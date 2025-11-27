@@ -78,9 +78,28 @@ ols('종속 ~ C(독립)', df)
 ### 상관 계수
 - df.corr()
 ### 단순 선형 회귀 분석
-- ols
+- ols('종속~독립', df).fit
+- 결정계수
+  - model.rsquared()
+- 회귀계수
+  - 기울기: model.params['X']
+  - 절편: model.params['Intercept']
+- p_value
+  - model.pvalues['X']
+- 예측
+  - new = pd.DataFrame({})
+  - model.predict(new)[0]
+- SSE 잔차제곱합
+  - (df['잔차']**2).sum()
+- MES 평균제곱오차
+  - (df['잔차']**2).mean()
 ### 다중 선형 회귀 분석
-- ols
+- ols('Y~A+B')
+- (model.resid**2).sum() -> 잔차제곱합
+- (model.resid**2).mean() -> 평균제곱오차
+- 신뢰구간
+  - model.conf_int(신뢰구간)
+  - model.get_predict(new).summary_frame(신뢰구간)
 ### 범주형 변수
 - ols
 
